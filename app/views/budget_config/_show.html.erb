@@ -1,0 +1,142 @@
+<% content_for :header_tags do %>
+	<%= stylesheet_link_tag('budget', :plugin => 'redmine_budget') %>
+<% end %>
+
+<% @budget = ProjectsBudget.budget_config(@project)
+def costclass(value)
+	cl = "right"
+	if (value !=nil)
+		if value > 0
+			cl << " hascost"
+		end
+	end
+	return cl
+end
+%>
+<div class="splitcontentleft">
+<%= form_tag(budget_config_url(@project), :method => 'put') do%>
+  <fieldset class="box tabular">
+  	<legend><%= l(:label_budget_config) %></legend>
+  	<p>
+      <label for="category"><%= l(:label_budget_category) %></label>
+      <% @categories = l(:budget_project_categories).split(',') 
+      for index in 0 ... @categories.size
+      	checked = false 
+      	if @budget.category == index
+      		checked = true
+      	end
+      %>
+      <%= radio_button_tag :category,index,checked %> <%= @categories[index]%>
+      <%end%>
+    </p>
+    <p>
+      <label for="pm_unit"><%= l(:label_budget_contract_type) %></label>
+      <% @contract_types = l(:budget_project_contract_types).split(',') 
+      for index in 0 ... @contract_types.size 
+      	checked = false 
+      	if @budget.contract_type == index
+      		checked = true
+      	end
+      %>
+      <%= radio_button_tag :contract_type,index,checked %> <%= @contract_types[index]%>
+      <%end%>
+    </p>
+    <p>
+      <label for="start_date"><%= l(:label_budget_start_date) %></label><span class ="required"> *</span>
+      <%= text_field_tag 'start_date', @budget.start_date, :size => 12, :class => 'right', :required => true%> <%= calendar_for_ext('start_date','-2:+1') %> 
+    </p>
+    <p>
+      <label for="due_date"><%= l(:label_budget_due_date) %></label><span class ="required"> *</span>
+      <%= text_field_tag 'due_date', @budget.due_date, :size => 12, :class => 'right', :required => true%> <%= calendar_for_ext('due_date','-2:+1') %> 
+    </p>
+  	</legend>
+  </fieldset>
+  <fieldset class="box tabular">
+    <legend><%= l(:label_budget_unit_price) %></legend>
+    <p>
+      <label for="pm_unit"><%= l(:label_budget_pm) %></label>
+      <%= text_field_tag 'pm_unit', @budget.pm_unit, :size => 6, :class => 'right' %> (<%= l(:label_budget_unit_currency) %>)
+    </p>
+    <p>
+      <label for="brsej_unit"><%= l(:label_budget_brsej) %></label>
+      <%= text_field_tag 'bsej_unit', @budget.bsej_unit, :size => 6, :class => 'right' %> (<%= l(:label_budget_unit_currency) %>)
+    </p>
+    <p>
+      <label for="brsev_unit"><%= l(:label_budget_brsev) %></label>
+      <%= text_field_tag 'bsev_unit', @budget.bsev_unit, :size => 6, :class => 'right' %> (<%= l(:label_budget_unit_currency) %>)
+    </p>
+    <p>
+      <label for="tl_unit]"><%= l(:label_budget_tl) %></label>
+      <%= text_field_tag 'tl_unit', @budget.tl_unit, :size => 6, :class => 'right' %> (<%= l(:label_budget_unit_currency) %>)
+    </p>
+    <p>
+      <label for="pg_unit]"><%= l(:label_budget_pg) %></label>
+      <%= text_field_tag 'pg_unit', @budget.pg_unit, :size => 6, :class => 'right' %> (<%= l(:label_budget_unit_currency) %>)
+    </p>
+    <p>
+      <label for="designer_unit"><%= l(:label_budget_designer) %></label>
+      <%= text_field_tag 'designer_unit]', @budget.designer_unit, :size => 6, :class => 'right' %> (<%= l(:label_budget_unit_currency) %>)
+    </p>
+    <p>
+      <label for="commter_unit"><%= l(:label_budget_commter) %></label>
+      <%= text_field_tag 'commter_unit', @budget.commter_unit, :size => 6, :class => 'right' %> (<%= l(:label_budget_unit_currency) %>)
+    </p>
+    <p>
+      <label for="tester_unit]"><%= l(:label_budget_tester) %></label>
+      <%= text_field_tag 'tester_unit', @budget.tester_unit, :size => 6, :class => 'right' %> (<%= l(:label_budget_unit_currency) %>)
+    </p>
+    
+  </fieldset>
+  <%= submit_tag l(:button_save) %>
+<% end %>
+</div>
+<div class="splitcontentright">
+<%= form_tag(budget_config_url(@project), :method => 'put') do%>
+  <fieldset class="box tabular">
+    <legend><%=@budget.monthly%><%= l(:label_budget_cost) %></legend>
+    <p>
+      <label for="pm_est"><%= l(:label_budget_pm) %></label>
+      <%= text_field_tag 'pm_est', @budget.pm_est, :size => 6, :class => costclass(@budget.pm_est) %> (<%= l(:label_budget_unit_effort) %>)
+    </p>
+    <p>
+      <label for="brsej_est"><%= l(:label_budget_brsej) %></label>
+      <%= text_field_tag 'bsej_est', @budget.bsej_est, :size => 6, :class => costclass(@budget.bsej_est) %> (<%= l(:label_budget_unit_effort) %>)
+    </p>
+    <p>
+      <label for="brsev_est"><%= l(:label_budget_brsev) %></label>
+      <%= text_field_tag 'bsev_est', @budget.bsev_est, :size => 6, :class => costclass(@budget.bsev_est) %> (<%= l(:label_budget_unit_effort) %>)
+    </p>
+    <p>
+      <label for="tl_est"><%= l(:label_budget_tl) %></label>
+      <%= text_field_tag 'tl_est', @budget.tl_est, :size => 6, :class => costclass(@budget.tl_est) %> (<%= l(:label_budget_unit_effort) %>)
+    </p>
+    <p>
+      <label for="pg_est"><%= l(:label_budget_pg) %></label>
+      <%= text_field_tag 'pg_est', @budget.pg_est, :size => 6, :class => costclass(@budget.pg_est) %> (<%= l(:label_budget_unit_effort) %>)
+    </p>
+    <p>
+      <label for="designer_est"><%= l(:label_budget_designer) %></label>
+      <%= text_field_tag 'designer_est', @budget.designer_est, :size => 6, :class => costclass(@budget.designer_est) %> (<%= l(:label_budget_unit_effort) %>)
+    </p>
+    <p>
+      <label for="commter_est"><%= l(:label_budget_commter) %></label>
+      <%= text_field_tag 'commter_est', @budget.commter_est, :size => 6, :class => costclass(@budget.commter_est) %> (<%= l(:label_budget_unit_effort) %>)
+    </p>
+    <p>
+      <label for="tester_est"><%= l(:label_budget_tester) %></label>
+      <%= text_field_tag 'tester_est', @budget.tester_est, :size => 6, :class => costclass(@budget.tester_est) %> (<%= l(:label_budget_unit_effort) %>)
+    </p>
+    <p>
+      <label for="other_est" class ="othercost_label"><%= l(:label_budget_other) %></label>
+      <%= text_field_tag 'other_est', @budget.other_est, :size => 6, :class => costclass(@budget.other_est) %> <%= l(:label_budget_unit_currency) %>　(<%= l(:label_budget_other_comment) %>)
+    </p>
+    <p></p>
+    <p>
+    	<label for="total_est" class ="totalcost_label"><%=@budget.monthly%><%= l(:label_budget_total) %></label>  : <span class ="totalcost"><%=number_with_delimiter(@budget.total_est,:delimiter => ",", :separator => ".")%></span>  <%= l(:label_budget_unit_currency) %>　
+    </p>
+    
+  </fieldset>
+  <%= submit_tag l(:button_save) %>
+<% end %>
+</div>
+	

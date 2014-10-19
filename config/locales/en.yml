@@ -1,0 +1,51 @@
+# English strings go here for Rails i18n
+en:
+  permission_budget_admin: Administer Project Budget
+  
+  budget_project_categories: "Internal,External"
+  budget_project_contract_types: "None,Project,Labo"
+  
+  org_director: "Director"
+  ogr_manager: "Project Manager"
+  org_bsej: "Bridge SE-J"
+  org_bsev: "Bridge SE-V"
+  org_tl: "Team Leader"
+  org_se: "System Engineer"
+  org_pg: "Programmer"
+  org_desginer: "Desinger"
+  org_commter: "Communicator"
+  org_tester: "Tester"
+  org_support: "Support"
+  
+  label_project_period: Project period
+  project_start_date_field: Start date
+  project_due_date_field: Due date
+  
+  label_budget_actual: Cost actual
+  label_budget_menu_main: Budget
+  label_budget_cost: Cost Estimation
+  label_budget_monthly: Monthly
+  label_budget_pm: Project Manager
+  label_budget_brsej: Bridge SE-J
+  label_budget_brsev: Bridge SE-V
+  label_budget_se: System Engineer
+  label_budget_tl: Team Leader
+  label_budget_pg: Programmer
+  label_budget_designer: Designer
+  label_budget_commter: Communicator
+  label_budget_tester: Tester
+  label_budget_start_date: Contract start date
+  label_budget_due_date: Contract due date (plan)
+  label_budget_project_category: Project category
+  label_budget_contract_type: Contract type
+  label_budget_finished: Finished
+  label_budget_other: Other
+  label_budget_other_comment: "transportation fee, express fee ..etc"
+  label_budget_unit_price: Unit Price
+  label_budget_config: Project Config
+  label_budget_category: Category
+  label_budget_contract_type: Contract type
+  label_budget_unit_currency: 万円
+  label_budget_unit_effort: mm
+  label_budget_total: "Total"
+  error_must_be_number: "Data entered was wrong format. Please check it and enter again"

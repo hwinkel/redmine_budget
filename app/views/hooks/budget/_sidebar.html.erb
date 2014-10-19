@@ -1,0 +1,43 @@
+<% @budget = ProjectsBudget.find_by_project_id(@project.id)
+	if (@budget != nil)
+%>
+<div id="budget_side_bar">
+  <p>
+	<h3><%= l(:label_budget_cost) %></h3>
+	<ul>
+		<%if @budget.pm_est > 0 %>
+		<li> <%= l(:label_budget_pm) %> : <%=@budget.pm_est%> <%= l(:label_budget_unit_effort) %></li>
+		<%end%>
+		<%if @budget.bsej_est > 0 %>
+		<li> <%= l(:label_budget_brsej) %> : <%=@budget.bsej_est%> <%= l(:label_budget_unit_effort) %></li>
+		<%end%>
+		<%if @budget.bsev_est > 0 %>
+		<li> <%= l(:label_budget_brsev) %> : <%=@budget.bsev_est%> <%= l(:label_budget_unit_effort) %></li>
+		<%end%>
+		<%if @budget.tl_est > 0 %>
+		<li> <%= l(:label_budget_tl) %> : <%=@budget.tl_est%> <%= l(:label_budget_unit_effort) %></li>
+		<%end%>
+		<%if @budget.pg_est > 0 %>
+		<li> <%= l(:label_budget_pg) %> : <%=@budget.pg_est%> <%= l(:label_budget_unit_effort) %></li>
+		<%end%>
+		<%if @budget.designer_est > 0 %>
+		<li> <%= l(:label_budget_designer) %> : <%=@budget.designer_est%> <%= l(:label_budget_unit_effort) %></li>
+		<%end%>
+		<%if @budget.tester_est > 0 %>
+		<li> <%= l(:label_budget_tester) %> : <%=@budget.tester_est%> <%= l(:label_budget_unit_effort) %></li>
+		<%end%>
+		<%if @budget.commter_est > 0 %>
+		<li> <%= l(:label_budget_commter) %> : <%=@budget.commter_est%> <%= l(:label_budget_unit_effort) %></li>
+		<%end%>
+		<%if @budget.other_est > 0 %>
+		<li> <%= l(:label_budget_other) %> : <%=@budget.other_est%> <%= l(:label_budget_unit_currency) %></li>
+		<%end%>
+		<%if User.current.allowed_to?(:budget_admin, @project)%>
+		<li> <span class="totalcost"><%= l(:label_budget_total) %> : <%=@budget.total_est%> <%= l(:label_budget_unit_currency) %></span></li>
+		<%end%>
+	</ul>
+  </p>
+</div>
+
+<% end%>
+

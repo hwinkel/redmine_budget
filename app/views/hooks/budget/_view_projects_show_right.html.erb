@@ -1,0 +1,18 @@
+<% content_for :header_tags do %>
+	<%= stylesheet_link_tag('budget', :plugin => 'redmine_budget') %>
+<% end %>
+
+<% 
+costs = Allocation.project_cost(@project)
+%>
+<div class="budget box">
+	<h3><%=l(:label_budget_actual)%></h3>
+	<p>
+		<% costs.each do |c| 
+			md = c.work_allocation/100.0
+			mm = md/22.0
+		%>
+		<%=h c.role_name %>: <%=md.round(1) %>md  ( <%=mm.round(2) %> mm) <br />
+		<% end %>
+	</p>
+</div>

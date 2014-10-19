@@ -1,0 +1,24 @@
+#tab-content-budget legend {font-weight: bold;}
+#tab-content-budget label {font-weight: normal !important;}
+#tab-content-budget .splitcontentleft {width: 48%;}
+#tab-content-budget .splitcontentleft {width: 48%;}
+#tab-content-budget .hascost {background-color : #ffff00;}
+#tab-content-budget .othercost_label {color:#f08080}
+#tab-content-budget .totalcost_label {font-weight: bold;font-size:16px;color: #dc143c}
+#tab-content-budget .totalcost {font-weight: bold;font-size:16px;text-decoration: underline;color: #dc143c}
+div#budget_side_bar li {
+	list-style: none;
+	line-height: 1.0em;
+	padding-left: 10px;
+	padding-bottom:10px;
+}
+
+div#budget_side_bar h3 {
+	text-decoration: underline;
+}
+
+.totalcost {
+	font-weight: bold;font-size:14px;text-decoration: underline;color: #dc143c;
+}
+
+div.budget h3 { background: url(../images/budget.png) no-repeat 0% 50%; padding-left: 20px; }
