@@ -16,7 +16,7 @@ module BudgetProjectsHelperMethods
       :name => 'budget',
       :controller => 'budget_config', :action => :show,
       :partial => 'budget_config/show', :label => :label_budget_menu_main}
-    if User.current.allowed_to?(tab, @project)
+    if User.current.admin? || User.current.allowed_to?(tab, @project)
       tabs.insert(1,tab) 
     end
     return tabs
